@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+google-cloud-storage
+google-cloud-pubsub
+google-cloud-sqlconnectors
+sqlalchemy
+pg8000
