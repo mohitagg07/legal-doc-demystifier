@@ -159,14 +159,61 @@ function App() {
 }
 
 // --- UI Components ---
-const Header = () => ( <header>...</header> );
-const HeroSection = () => ( <section>...</section> );
-const FeaturesSection = () => ( <section>...</section> );
-const HowItWorksSection = () => ( <section>...</section> );
 
-// --- THIS IS THE FIX ---
+const Header = () => (
+    <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-gray-800"><span className="text-indigo-600">Legal</span>Demystifier</div>
+          <div className="hidden md:flex space-x-6 items-center">
+            <a href="#features" className="text-gray-600 hover:text-indigo-600 transition">Features</a>
+            <a href="#how-it-works" className="text-gray-600 hover:text-indigo-600 transition">How It Works</a>
+            <a href="#upload" className="bg-indigo-600 text-white font-semibold px-5 py-2 rounded-md hover:bg-indigo-700 transition shadow-sm">Get Started</a>
+          </div>
+        </nav>
+    </header>
+);
+
+const HeroSection = () => (
+    <section className="bg-gray-50">
+        <div className="container mx-auto px-6 py-24 md:py-32 text-center">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">Understand Your Legal Documents, Instantly.</h1>
+            <p className="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Our AI analyzes complex contracts and spoken agreements, transforming them into simple, interactive, and actionable timelines.</p>
+            <a href="#upload" className="mt-8 inline-block bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:bg-indigo-700 transition transform hover:-translate-y-1">Analyze Now</a>
+        </div>
+    </section>
+);
+
+const FeaturesSection = () => (
+    <section id="features" className="py-20">
+        <div className="container mx-auto px-6">
+            <div className="text-center mb-16"><h2 className="text-3xl md:text-4xl font-bold text-gray-900">Powerful Features, Simple Interface</h2><p className="mt-3 text-gray-600 max-w-2xl mx-auto">Everything you need to gain clarity and confidence in your legal agreements.</p></div>
+            <div className="grid md:grid-cols-3 gap-10">
+                <div className="text-center p-8 bg-gray-50 rounded-xl shadow-sm"><FeatureIcon1 /><h3 className="text-xl font-semibold mb-2 text-gray-900">Clause Extraction & Summaries</h3><p className="text-gray-600">Our AI automatically identifies key clauses and translates dense legal jargon into plain, simple English.</p></div>
+                <div className="text-center p-8 bg-gray-50 rounded-xl shadow-sm"><FeatureIcon2 /><h3 className="text-xl font-semibold mb-2 text-gray-900">AI-Powered Risk Highlighting</h3><p className="text-gray-600">Instantly flag potential risks, obligations, and penalties, so you know exactly where to focus your attention.</p></div>
+                <div className="text-center p-8 bg-gray-50 rounded-xl shadow-sm"><FeatureIcon3 /><h3 className="text-xl font-semibold mb-2 text-gray-900">Interactive Event Timeline</h3><p className="text-gray-600">Never miss a deadline again. All critical dates are extracted and plotted on a visual timeline for easy tracking.</p></div>
+            </div>
+        </div>
+    </section>
+);
+
+const HowItWorksSection = () => (
+    <section id="how-it-works" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16">A Simple, Three-Step Process</h2>
+            <div className="relative">
+                <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200" style={{transform: 'translateY(-50%)', zIndex: 1}}></div>
+                <div className="relative grid md:grid-cols-3 gap-12 text-center z-10">
+                    <div className="flex flex-col items-center"><div className="bg-white border-2 border-indigo-500 rounded-full h-20 w-20 flex items-center justify-center text-3xl font-bold text-indigo-600 mb-4 shadow-md">1</div><h3 className="text-xl font-semibold mb-2">Upload or Record</h3><p className="text-gray-600">Securely upload a document or record a voice message about the agreement.</p></div>
+                    <div className="flex flex-col items-center"><div className="bg-white border-2 border-indigo-500 rounded-full h-20 w-20 flex items-center justify-center text-3xl font-bold text-indigo-600 mb-4 shadow-md">2</div><h3 className="text-xl font-semibold mb-2">AI Analysis</h3><p className="text-gray-600">Our platform scans, parses, and analyzes the content in seconds.</p></div>
+                    <div className="flex flex-col items-center"><div className="bg-white border-2 border-indigo-500 rounded-full h-20 w-20 flex items-center justify-center text-3xl font-bold text-indigo-600 mb-4 shadow-md">3</div><h3 className="text-xl font-semibold mb-2">Explore Results</h3><p className="text-gray-600">Receive an interactive report with summaries, risks, and a visual timeline.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
 interface ActionSectionProps {
-    fileInputRef: React.RefObject<HTMLInputElement | null>; // Changed this line
+    fileInputRef: React.RefObject<HTMLInputElement | null>;
     handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleProcessDocument: () => void;
     fileName: string;
@@ -197,7 +244,7 @@ const ActionSection = ({ fileInputRef, handleFileChange, handleProcessDocument, 
                 <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept=".pdf,.doc,.docx" />
                 <button onClick={() => fileInputRef.current?.click()} className="font-semibold text-indigo-600 hover:text-indigo-800 transition">Browse Files</button>
                 {fileName && <p className="text-sm text-gray-500 mt-2 truncate" title={fileName}>{fileName}</p>}
-            _git </div>
+              </div>
               <div className="mt-6">
                 <button onClick={handleProcessDocument} disabled={isProcessing || !selectedFile} className="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition flex items-center justify-center">
                   {isProcessing && selectedFile ? 'Analyzing...' : 'Process Document'}
@@ -226,13 +273,75 @@ const ActionSection = ({ fileInputRef, handleFileChange, handleProcessDocument, 
     </section>
 );
 
-const Footer = () => ( <footer >...</footer > );
-const ResultsDashboard = ({ fileName, onAnalyzeAnother }: any) => { ... };
-const TimelineItem = ({ item, isLast }: any) => { ... };
-const ToggleButton = ({ label, isActive, onClick }: any) => { ... };
-const TextSummaryComponent = () => ( <div>...</div> );
-const VisualDiagramComponent = () => ( <div>...</div> );
-const AudioPlayerComponent = () => { ... };
+const Footer = () => (
+    <footer className="bg-gray-800 text-gray-400">
+        <div className="container mx-auto px-6 py-10 text-center">
+            <p>&copy; 2025 LegalDemystifier. All Rights Reserved.</p>
+            <p className="text-sm mt-2">This is a project showcase and not a provider of legal advice.</p>
+        </div>
+    </footer>
+);
+
+interface ResultsDashboardProps {
+    fileName: string;
+    onAnalyzeAnother: () => void;
+}
+
+const ResultsDashboard = ({ fileName, onAnalyzeAnother }: ResultsDashboardProps) => {
+    const [showText, setShowText] = useState(true);
+    const [showVisual, setShowVisual] = useState(true);
+    const [showAudio, setShowAudio] = useState(true);
+    return (
+        <div className="bg-gray-50 min-h-screen">
+            <header className="bg-white shadow-sm"><div className="container mx-auto px-6 py-4 flex justify-between items-center"><div className="text-2xl font-bold text-gray-800 truncate pr-4"><span className="text-indigo-600">Results:</span> {fileName}</div><button onClick={onAnalyzeAnother} className="bg-indigo-600 text-white font-semibold px-5 py-2 rounded-md hover:bg-indigo-700 transition shadow-sm flex-shrink-0">Analyze Another</button></div></header>
+            <main className="container mx-auto px-6 py-12"><div className="grid lg:grid-cols-3 gap-8"><div className="lg:col-span-1"><h2 className="text-2xl font-bold text-gray-900 mb-6">Interactive Timeline</h2><div className="relative border-l-2 border-gray-200 pl-8">{mockTimelineData.map((item, index) => (<TimelineItem key={index} item={item} isLast={index === mockTimelineData.length - 1} />))}</div></div><div className="lg:col-span-2"><h2 className="text-2xl font-bold text-gray-900 mb-6">Document Analysis</h2><div className="bg-white p-6 rounded-xl shadow-md"><div className="flex flex-wrap gap-4 border-b border-gray-200 pb-4 mb-6"><ToggleButton label="Text Summary" isActive={showText} onClick={() => setShowText(!showText)} /><ToggleButton label="Visual Diagram" isActive={showVisual} onClick={() => setShowVisual(!showVisual)} /><ToggleButton label="Audio Explanation" isActive={showAudio} onClick={() => setShowAudio(!showAudio)} /></div><div className="space-y-8">{showText && <TextSummaryComponent />}{showVisual && <VisualDiagramComponent />}{showAudio && <AudioPlayerComponent />}</div></div></div></div></main>
+        </div>
+    );
+};
+
+interface TimelineItemProps {
+    item: TimelineItemData;
+    isLast: boolean;
+}
+
+const TimelineItem = ({ item, isLast }: TimelineItemProps) => {
+    const typeColorClasses: { [key in TimelineItemType]: string } = { 
+        milestone: 'bg-green-100 text-green-800', 
+        payment: 'bg-blue-100 text-blue-800', 
+        deadline: 'bg-red-100 text-red-800', 
+        notice: 'bg-yellow-100 text-yellow-800', 
+    };
+    return (<div className={`pb-10 ${isLast ? 'pb-0' : ''}`}><div className="absolute -left-4 mt-1.5 w-6 h-6 bg-indigo-600 rounded-full border-4 border-white"></div><p className="text-sm font-semibold text-indigo-600">{item.date}</p><h3 className="text-lg font-bold text-gray-900 mt-1">{item.title}</h3><p className="text-gray-600 mt-1">{item.description}</p><span className={`inline-block mt-2 px-2 py-0.5 text-xs font-medium rounded-full ${typeColorClasses[item.type] || 'bg-gray-100 text-gray-800'}`}>{item.type}</span></div>);
+};
+
+interface ToggleButtonProps {
+    label: string;
+    isActive: boolean;
+    onClick: () => void;
+}
+
+const ToggleButton = ({ label, isActive, onClick }: ToggleButtonProps) => (<button onClick={onClick} className={`px-4 py-2 text-sm font-semibold rounded-full transition ${isActive ? 'bg-indigo-600 text-white shadow' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>{label}</button>);
+
+const TextSummaryComponent = () => (<div><h3 className="text-xl font-bold text-gray-900 mb-3">AI Text Summary</h3><p className="text-gray-700 leading-relaxed">{mockTextSummary}</p></div>);
+const VisualDiagramComponent = () => (<div><h3 className="text-xl font-bold text-gray-900 mb-4">Clause Relationship Diagram</h3><div className="flex items-center justify-center gap-4 text-center"><div className="bg-gray-100 p-4 rounded-lg shadow-sm w-40"><p className="font-semibold">Party A</p><p className="text-xs text-gray-500">(Client)</p></div><div className="font-semibold text-gray-500 flex flex-col items-center"><span>Confidentiality</span><span className="text-2xl">&harr;</span><span className="text-xs">(Section 5)</span></div><div className="bg-gray-100 p-4 rounded-lg shadow-sm w-40"><p className="font-semibold">Party B</p><p className="text-xs text-gray-500">(Service Provider)</p></div></div></div>);
+const AudioPlayerComponent = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    return (<div><h3 className="text-xl font-bold text-gray-900 mb-4">Audio Explanation</h3><div className="bg-gray-100 p-4 rounded-lg flex items-center gap-4"><button onClick={() => setIsPlaying(!isPlaying)} className="text-indigo-600 hover:text-indigo-800 transition">{isPlaying ? <PauseIcon /> : <PlayIcon />}</button><div className="w-full bg-gray-200 rounded-full h-2.5"><div className="bg-indigo-600 h-2.5 rounded-full" style={{ width: isPlaying ? '45%' : '0%', transition: isPlaying ? 'width 10s linear' : 'none' }}></div></div><span className="text-sm text-gray-600 font-mono">0:45</span></div></div>);
+};
 
 export default App;
+```
+
+**Step 2: PUSH TO GITHUB IMMEDIATELY**
+
+1.  Save the file.
+2.  Open your terminal in the project folder.
+3.  Type these three commands exactly and press Enter after each one:
+
+```bash
+git add .
+
+git commit -m "Final build fix"
+
+git push
 
