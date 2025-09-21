@@ -18,20 +18,4 @@ Upload contracts (PDF/DOCX) → get interactive timelines, clause summaries, ris
 
 ---
 
-## 🧱 Architecture
 
-```mermaid
-flowchart TD
-    A[User Browser] --> B[Frontend (React + Tailwind)]
-    B --> C[Backend API (FastAPI)]
-    C --> D[Vertex Document AI]
-    C --> E[LLaMA-3 via API Gateway]
-    C --> F[Vertex Matching Engine]
-    C --> G[Cloud SQL (Postgres)]
-    C --> H[Cloud Storage]
-    C --> I[Redis (Rate Limiting)]
-    C --> J[Cloud Logging & Monitoring]
-    C --> K[AI Safety Filter]
-    B -->|Interactive Timeline, Viewer, Q&A| A
-
-```
